@@ -1,3 +1,0 @@
-C:/MyFiles/MyProjects/DonutC/cmake-build-debug/CMakeFiles/DonutC.dir
-C:/MyFiles/MyProjects/DonutC/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/MyFiles/MyProjects/DonutC/cmake-build-debug/CMakeFiles/rebuild_cache.dir
