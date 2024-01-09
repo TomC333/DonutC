@@ -1,61 +1,38 @@
-#include <windows.h>
-#include <wincon.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
 
-typedef struct{
-    int width;
-    int height;
-} screenDimensions;
+void drawSquare(int size) {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            printf("* ");
+        }
+        printf("\n");
+    }
+}
 
-screenDimensions getScreenDimensions();
-
-int clearScreen();
 
 int main() {
+    
 
-    int n = clearScreen();
-    screenDimensions dim = getScreenDimensions();
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 
-    printf("Width %d\n", dim.width);
-    printf("Height %d\n", dim.height);
-    printf("N %d\n", n);
-}
+    int terminalWidth = w.ws_col;
+    int terminalHeight = w.ws_row;
 
-screenDimensions getScreenDimensions(){
+    int squareSize = 10;
 
-    CONSOLE_SCREEN_BUFFER_INFO csbInfo;
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    if(hConsole != INVALID_HANDLE_VALUE && GetConsoleScreenBufferInfo(hConsole, &csbInfo)){
-
-        screenDimensions result = {
-                csbInfo.srWindow.Right - csbInfo.srWindow.Left + 1,
-                csbInfo.srWindow.Bottom - csbInfo.srWindow.Top + 1
-        };
-
-        return result;
+    for(int i = 0; i < 10; i++){
+         int startX = (terminalWidth - squareSize) / 2;
+        int startY = (terminalHeight - squareSize) / 2;
+        system("clear");
+        printf("\033[%d;%dH", startY, startX);
+        drawSquare(squareSize);
+        squareSize += 1;
     }
 
-    printf("Error while trying to get terminal dimensions\n");
-    return (screenDimensions) {-1, -1};
+    return 0;
+   
 }
-
-
-int clearScreen(){
-
-    CONSOLE_SCREEN_BUFFER_INFO csbInfo;
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-    if(hConsole != INVALID_HANDLE_VALUE && GetConsoleScreenBufferInfo(hConsole, &csbInfo)) {
-
-        DWORD written;
-        FillConsoleOutputCharacter(hConsole, ' ', csbInfo.dwSize.X - csbInfo.dwSize.Y, (COORD){0, 0}, &written);
-        SetConsoleCursorPosition(hConsole, (COORD) {0, 0});
-
-        return 0;
-    }
-
-    printf("Error while trying to clear terminal window\n");
-    return -1;
-}
-
