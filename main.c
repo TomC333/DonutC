@@ -17,7 +17,7 @@
 // Alpha is corner which helps to get ring point
 #define ALPHA_SPACING 0.02
 // Theta is corner which goes around 3D object + used to rotate on y
-#define THETA_SPACING 0.08
+#define THETA_SPACING 0.01
 // Just simplify using of PI :D 
 #define PI M_PI
 
@@ -34,8 +34,8 @@ int main() {
     
     dimensions terminalDimensions = getTerminalDimensions();
 
-    terminalDimensions.width = 100;
-    terminalDimensions.height =  100;
+    // terminalDimensions.width = 100;
+    // terminalDimensions.height =  100;
 
     char symbols[terminalDimensions.width][terminalDimensions.height + 10];
     int zBuffer[terminalDimensions.width][terminalDimensions.height + 10];
@@ -45,6 +45,8 @@ int main() {
     double xRotation = 0;
     double zRotation = 0;
     
+    printf("\x1b[2J");
+
     while(1){
 
         memset(symbols, ' ', sizeof(symbols));
@@ -58,7 +60,7 @@ int main() {
         
         for(double alpha = 0; alpha < 2 * PI; alpha += ALPHA_SPACING){
             
-            double sinAlpha = sin(alpha);
+            double sinAlpha = sin(alpha); 
             double cosAlpha = cos(alpha);
 
             double circleX = R2 + R1 * cosAlpha;
@@ -79,8 +81,8 @@ int main() {
                 // new range from -1 to 1
                 light /= sqrt(2);
 
-                int onScreenX = 10 + (terminalDimensions.height - (int) ((FOV * x) / (STOD + x))) / 2;
-                int onScreenY = 10 + (terminalDimensions.width - (int) ((FOV * y) / (STOD + z))) / 2;
+                int onScreenX = (terminalDimensions.width - (int) ((FOV * x) / (STOD + x))) / 2;
+                int onScreenY = (terminalDimensions.height - (int) ((FOV * y) / (STOD + z))) / 2;
 
                 if(light > 0){
                     
@@ -93,6 +95,7 @@ int main() {
             }
         }
 
+        printf("\x1b[d");
         for(int i = 0; i < terminalDimensions.height; i++){
             for(int j = 0; j < terminalDimensions.width; j++){
                 printf("%c", symbols[j][i]);
@@ -100,7 +103,6 @@ int main() {
             printf("\n");
         }
 
-        printf("\r");
         xRotation += 0.1;
         zRotation += 0.1;
         usleep(100000);
