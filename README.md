@@ -48,7 +48,5 @@ Thank you for your contributions! 🙌
 ## Contact 📧
 
 For any questions or feedback, feel free to reach out:
-- Email: your.email@example.com
-- LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/your-linkedin-profile/)
-
-Enjoy the mesmerizing rotation! 🌀
+- Email: d.dadiani343@gmail.com
+- LinkedIn: [David Dadiani](https://www.linkedin.com/in/david-dadiani-6677b5226/)   
