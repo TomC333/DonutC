@@ -7,17 +7,17 @@
 
 
 // Torus ring radius 
-#define R1 2
+#define R1 5
 // Distance from torus ring center to rotating axis
-#define R2 5
+#define R2 10
 // STOD is distance from screen to "3D" donut
-#define STOD 100
-// Field of view should be calculated according to upper values, but for now some random value :D (which fits good to my screen :D) (should be changed )
-#define FOV 100*STOD/(R1+R2)*0.5
+#define STOD 200
+// Field of view, change 0.5 only :D 
+#define FOV STOD*STOD/(R1+R2)*0.3
 // Alpha is corner which helps to get ring point
-#define ALPHA_SPACING 0.02
+#define ALPHA_SPACING 0.03
 // Theta is corner which goes around 3D object + used to rotate on y
-#define THETA_SPACING 0.01
+#define THETA_SPACING 0.08
 // Just simplify using of PI :D 
 #define PI M_PI
 
@@ -27,19 +27,29 @@ typedef struct{
     int width;
 } dimensions;
 
+typedef struct{
+    double x;
+    double y;
+    double z;
+} vector;
+
 
 dimensions getTerminalDimensions();
+double getLightValue(vector light, double sinAlpha, double cosAlpha, double sinTheta, double cosTheta, double xRotationSin, double xRotationCos, double zRotationSin, double zRotationCos);
 
-int main() {
+int main(){
     
     dimensions terminalDimensions = getTerminalDimensions();
 
-    // terminalDimensions.width = 100;
-    // terminalDimensions.height =  100;
-
-    char symbols[terminalDimensions.width][terminalDimensions.height + 10];
-    int zBuffer[terminalDimensions.width][terminalDimensions.height + 10];
+    char symbols[terminalDimensions.width][terminalDimensions.height];
+    int zBuffer[terminalDimensions.width][terminalDimensions.height];
     
+    //declaring light direction vector here 
+    vector lightVector;
+    lightVector.x = 0;
+    lightVector.y = 1;
+    lightVector.z = -1;
+
     // We need 2 more corners for x an z rotations, alpha and theta should find all point mappings always, 
     // but that 2 value can be changed after one movement is finished 
     double xRotation = 0;
@@ -75,11 +85,9 @@ int main() {
                 double y = circleX * (zRotationSin * cosTheta - zRotationCos * xRotationSin * sinTheta) + circleY * xRotationCos * zRotationCos;
                 double z = STOD + circleX * xRotationCos * sinTheta + circleY * xRotationSin;
 
-                // lets take (0, 1, -1) as light direction and make dot product of it and surface normal, to determine light strength and direction
-                // light vector is (0, 1, -1) and it's not normalized so value of light is from -sqrt(2) to sqrt(2), therefore I divede l with sqrt(2)
-                double light = cosTheta * cosAlpha * zRotationSin - xRotationCos * cosAlpha * sinTheta - xRotationSin * sinAlpha + zRotationCos * (xRotationCos * sinAlpha - cosAlpha * xRotationSin * sinTheta);
-                // new range from -1 to 1
-                light /= sqrt(2);
+                double light = getLightValue(lightVector, sinAlpha, cosAlpha, sinTheta, cosTheta, xRotationSin, xRotationCos, zRotationSin, zRotationCos);
+                // light vector sometimes is not normalized, to normalize value of light to range (-1, 1), dividing it to length of light direction vector
+                light /= sqrt(lightVector.x * lightVector.x + lightVector.y * lightVector.y + lightVector.z * lightVector.z);
 
                 int onScreenX = (terminalDimensions.width - (int) ((FOV * x) / (STOD + x))) / 2;
                 int onScreenY = (terminalDimensions.height - (int) ((FOV * y) / (STOD + z))) / 2;
@@ -122,4 +130,13 @@ dimensions getTerminalDimensions(){
     terminalDimensions.height = w.ws_row;
     
     return terminalDimensions;
+}
+
+double getLightValue(vector light, double sinAlpha, double cosAlpha, double sinTheta, double cosTheta, double xRotationSin, double xRotationCos, double zRotationSin, double zRotationCos){
+
+    double firstLine = cosAlpha * (zRotationCos * cosTheta + zRotationSin * xRotationSin * sinTheta) - sinAlpha * zRotationSin * xRotationCos;
+    double secondLine = cosAlpha * (zRotationSin * cosTheta - zRotationCos * xRotationSin * sinTheta) + sinAlpha * zRotationCos * xRotationCos;
+    double thirdLine = cosAlpha * xRotationCos * sinTheta + sinAlpha * xRotationSin;
+
+    return light.x * firstLine + light.y * secondLine + light.z * thirdLine;
 }
