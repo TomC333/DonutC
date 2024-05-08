@@ -3,6 +3,8 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/TomC333/DonutC)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/TomC333/DonutC/blob/main/LICENSE)
 
+![Demo](https://github.com/TomC333/DonutC/blob/main/Images/donut.gif)
+
 ## Table of Contents 📜
 
 - [Introduction](#introduction-)
@@ -20,7 +22,7 @@ Experience the mesmerizing 3D spinning donut written in C. This project creates 
 - Real-time 3D rendering of a spinning donut.
 - Utilizes mathematical calculations and linear algebra for dynamic animation.
 - Adjustable parameters for customization.
-- Lightweight and easy to integrate into your C projects.
+
 
 ## Usage 🚀
 
