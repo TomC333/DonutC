@@ -3,52 +3,22 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/TomC333/DonutC)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/TomC333/DonutC/blob/main/LICENSE)
 
+## Background 🤯
+
+When I was browsing random videos on YouTube, I stumbled upon a 5-second video featuring a donut spinning, created entirely from characters in the terminal. Inspired by this, I decided to create my own version. It took me a year to start working on it, but eventually, I gave it a shot! 😅
+
+During my journey, this article was incredibly helpful: [Donut Math by A1k0n](https://www.a1k0n.net/2011/07/20/donut-math.html)
+
+After reading it and applying my little knowledge of linear algebra, I managed to code the donut in just a few hours. Sure, I probably made a few mistakes along the way, but the donut was spinning, so I considered it good enough to show my family. 😄 Unsurprisingly, their faces were a bit... unclear. But hey, at least I got to flex this project to my friends! 😎
+
+## Setup 🌱
+
+The setup is as simple as it gets!
+
+1. Open your terminal/command prompt and Use the cd command to navigate to the directory where you cloned the DonutC repository.
+2. Compile the code: `gcc spinning_donut.c -lm`
+3. Run the executable: `./a.exe`
+
+## Demo 🚀
+
 ![Demo](https://github.com/TomC333/DonutC/blob/main/Images/donut.gif)
-
-## Table of Contents 📜
-
-- [Introduction](#introduction-)
-- [Features](#features-)
-- [Usage](#usage-)
-- [Contributing](#contributing-)
-- [Contact](#contact-)
-
-## Introduction 🗨️
-
-Experience the mesmerizing 3D spinning donut written in C. This project creates a visually stunning spinning donut using ASCII characters in your terminal.
-
-## Features ⏳
-
-- Real-time 3D rendering of a spinning donut.
-- Utilizes mathematical calculations and linear algebra for dynamic animation.
-- Adjustable parameters for customization.
-
-
-## Usage 🚀
-
-1. Clone the repository: `git clone https://github.com/TomC333/DonutC.git`
-2. Navigate to the project directory: `cd DonutC`
-3. Compile the code: `gcc spinning_donut.c -lm`
-4. Run the executable: `./a.exe`
-
-## Contributing 🤝
-
-Contributions are welcome! If you would like to enhance the 3D spinning donut or fix issues, follow these steps:
-
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature/your-feature-name`
-3. Commit your changes: `git commit -m "Add your feature"`
-4. Push to the branch: `git push origin feature/your-feature-name`
-5. Open a pull request on the [GitHub repository](https://github.com/TomC333/DonutC)
-
-Please ensure that your contributions adhere to the following guidelines:
-- Maintain a clear and concise coding style.
-- Document any significant changes or additions.
-
-Thank you for your contributions! 🙌
-
-## Contact 📧
-
-For any questions or feedback, feel free to reach out:
-- Email: d.dadiani343@gmail.com
-- LinkedIn: [David Dadiani](https://www.linkedin.com/in/david-dadiani-6677b5226/)   
