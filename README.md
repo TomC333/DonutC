@@ -7,6 +7,8 @@
 
 When I was browsing random videos on YouTube, I stumbled upon a 5-second video featuring a donut spinning, created entirely from characters in the terminal. Inspired by this, I decided to create my own version. It took me a year to start working on it, but eventually, I gave it a shot! 😅
 
+## Random Info 🎲
+
 During my journey, this article was incredibly helpful: [Donut Math by A1k0n](https://www.a1k0n.net/2011/07/20/donut-math.html)
 
 After reading it and applying my little knowledge of linear algebra, I managed to code the donut in just a few hours. Sure, I probably made a few mistakes along the way, but the donut was spinning, so I considered it good enough to show my family. 😄 Unsurprisingly, their faces were a bit... unclear. But hey, at least I got to flex this project to my friends! 😎
