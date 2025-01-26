@@ -7,7 +7,7 @@
 
 When I was browsing random videos on YouTube, I stumbled upon a 5-second video featuring a donut spinning, created entirely from characters in the terminal. Inspired by this, I decided to create my own version. It took me a year to start working on it, but eventually, I gave it a shot! 😅
 
-## Random Info 🎲
+## Useful Info 💡
 
 During my journey, this article was incredibly helpful: [Donut Math by A1k0n](https://www.a1k0n.net/2011/07/20/donut-math.html)
 
